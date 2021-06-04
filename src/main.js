@@ -12,13 +12,10 @@ import './assets/css/style.css';
 
 
 const app = createApp(App);
-app.config.globalProperties.$http = Axios;
+app.config.globalProperties.$http = Axios;/*
 app.config.globalProperties.$http.defaults.headers.common['Content-Type'] = 'application/json';
-app.config.globalProperties.$http.defaults.headers.common['Origin'] = '*';
-const token = localStorage.getItem('token')
-if (token) {
-	app.config.globalProperties.$http.defaults.headers.common['Authorization'] = 'bearer '+token;
-}
+app.config.globalProperties.$http.defaults.headers.common['Origin'] = '*';*/
+
 
 app.config.devtools = true;
 app

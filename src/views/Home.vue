@@ -1,7 +1,8 @@
 <template>
     <div class="home"> 
-        <!-- file uploader -->           
-        <div class="file-upload-container">
+        <!-- file uploader --> 
+        <file-uploader  @update="storeImage"/>          
+        <!-- <div class="file-upload-container">
             <div v-bind="getRootProps()">
                 <input v-bind="getInputProps()" >
                 <p v-if="isDragActive">Drop the image here ...</p>
@@ -10,7 +11,7 @@
                     Drag and drop the image here, or click to select the image
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- upload file from link -->
         <div class="link-uploader text-center">
             <div class="row justify-content-center">
@@ -24,42 +25,31 @@
 </template>
 
 <script>
-//import { mapGetters, mapActions } from "vuex";
-import { useDropzone } from 'vue3-dropzone'
+import { mapGetters, mapActions } from "vuex"
+//import { useDropzone } from 'vue3-dropzone'
+import FileUploader from '../components/uploader/FileUploader.vue'
+
+
 
 export default {
-    //components: { FileUploader, LinkUploader},
+    components: { FileUploader},
     name: "Home",
-
-  //computed: { ...mapGetters(["productsPaginatedData"]) },
-
-
-    /*methods: {
-        ...mapActions(["fetchAllProducts"]),
-    },
-    */
-
-    // file drop 
-    setup() {
-        function onDrop(acceptFiles, rejectReasons) {
-            console.log(acceptFiles)
-            console.log(rejectReasons)
-        }
-
-        const { 
-            getRootProps, getInputProps, ...rest 
-        } = useDropzone({ 
-            onDrop,
-            maxFiles:1,
-            accept: 'image/jpeg, image/png, image/gif, image/jpg' 
-        })
-
-        return {
-            getRootProps,getInputProps, ...rest
+    data(){
+        return{
+            selectedFile : []
         }
     },
+
+    computed: { ...mapGetters(["isLoading"]) },
+
+
+    methods: {
+        ...mapActions(["storeImage"]),
+    },
+    
     created() {
         //this.fetchAllProducts(1);
+
     }
 };
 </script>
