@@ -1,5 +1,5 @@
 <template>
-    <div class="container" @dragover.prevent="dragOver" @dragleave.prevent="dragLeave" @drop.prevent="drop($event)">
+    <div class="file-upload-container" @dragover.prevent="dragOver" @dragleave.prevent="dragLeave" @drop.prevent="drop($event)">
         <div class="drop" v-show="dropped == 2"></div>
         <!-- Error Message -->
         <div v-show="error" class="error">
@@ -9,7 +9,7 @@
         <!-- To inform user how to upload image -->
         <div class="upload-area">
             <img height="50" src="/cloud.svg"/>
-            <input type="file" style="z-index: 1" accept="image/*" ref="uploadInput"  @change="previewImgs"/>
+            <input type="file" style="z-index: 1" accept="image/*" ref="uploadInput"  @change="selectImage"/>
       
             <p class="mainMessage">
                 {{ uploadMsg ? uploadMsg : "Click to upload or drop your images here" }}
@@ -25,8 +25,7 @@ export default {
         return {
             error: "",
             files: null,
-            dropped: 0,
-            Imgs: [],
+            dropped: 0
         };
     },
     props: {
@@ -50,11 +49,7 @@ export default {
                 if (status == true) {
                     this.files = files[0];
                     this.$emit("change", this.files);
-          
-                    this.Imgs = this.readAsDataURL(this.files);
-
                     this.$emit('update', this.files)
-                    this.previewImgs();
                 } else {
                   this.error = this.$props.fileError
                     ? this.$props.fileError
@@ -67,28 +62,13 @@ export default {
         append() {
             this.$refs.uploadInput.click();
         },
-        readAsDataURL(file) {
-            return new Promise(function (resolve, reject) {
-                let fr = new FileReader();
-                fr.onload = function () {
-                    resolve(fr.result);
-                };
-                fr.onerror = function () {
-                    reject(fr);
-                };
-                fr.readAsDataURL(file);
-            });
+        selectImage(e) {
+            let files = e.target.files || e.dataTransfer.files;
+            if (this.dropped == 0) this.files = files[0];
+            this.error = "";
+            this.$emit("change", this.files);
+            this.$emit('update', this.files)
         },
-        previewImgs(e) {
-          let files = e.target.files || e.dataTransfer.files;
-          if (this.dropped == 0) this.files = files[0];
-          this.error = "";
-          this.$emit("change", this.files);
-          
-          this.Imgs = this.readAsDataURL(this.files);
-
-          this.$emit('update', this.files)
-        },
-    },
+    }
 };
 </script>

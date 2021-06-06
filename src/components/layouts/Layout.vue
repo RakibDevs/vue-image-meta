@@ -1,5 +1,5 @@
 <template>
-  <div id="layout" class="bg-light " >
+  <div id="layout">
     <Header />
     <div class="main-content">
       <div class="container mt-3">

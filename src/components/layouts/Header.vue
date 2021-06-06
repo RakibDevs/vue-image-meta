@@ -1,7 +1,7 @@
 <template>
     
-    <nav class="navbar navbar-expand navbar-light bg-light">
-        <div class="d-flex container justify-content-between pl-4 pr-4">
+    <nav class="navbar navbar-expand">
+        <div class="d-flex container justify-content-left pl-4 pr-4">
             <router-link to="/" class="navbar-brand">
                 Image Meta
             </router-link>

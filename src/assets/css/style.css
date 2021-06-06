@@ -1,3 +1,20 @@
+a {
+    color: var(--bs-gray-dark);
+    text-decoration: none;
+}
+nav.header{
+    background-color: #0b2239;
+}
+.navbar-brand{
+    font-size: 30px;
+    font-weight: bold;
+    color: #4ad295;
+    font-family: cursive;
+}
+.navbar-expand .navbar-nav .nav-link {
+    color: #0b2239;
+    font-weight: 400;
+}
 .drop {
     width: 100%;
     height: 100%;
@@ -16,13 +33,14 @@
 .upload-area {
     position: relative;
     text-align: center;
-
-    border: 1px solid #d1d1d1;
+    border: 1px solid #e9e9e9;
     border-radius: 10px;
-    height: 200px;
-    padding: 50px;
-    width: 60%;
+    height: 120px;
+    padding: 19px;
+    width: 550px;
     margin: auto;
+    background: #eff3f6;
+    color: #5f7d95;
 }
 .upload-area input {
     width: 100%;
@@ -43,12 +61,74 @@
     margin: auto;
     display: block;
 }
+.file-upload-container{
+    color: #5f7d95;
+}
+.link-extractor{
+    width: 575px;
+    margin: auto;
+    position: relative;
+}
+.link-extractor input.form-control {
+    border-radius: 10px;
+    padding: 5px 30px;
+    font-size: 13px;
+    height: 40px;
+    border-color: #e9e9e9;
+    background: #eff3f6;
+}
+.btn-extractor {
+    position: absolute;
+    top: 0;
+    right: 11px;
+    background: #4ad295;
+    border-radius: 0 10px 10px 0;
+    height: 40px;
+    width: 100px;
+    color: #fff;
+}
+.w-60p{
+    width: 80%;
+    margin: auto;
+}
+.created-image-preview{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+.panel-custom {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+}
 .image-item{
     text-align: center;
+    position: relative;
+}
+a.download-icon {
+    width: 30px;
+    height: 30px;
+    background: #4ad295;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 18px;
+    color: #fff;
+    border-radius: 3px;
+    position: absolute;
+    left: 45%;
+    bottom: 20px;
 }
 .image-item img {
     width: 200px;
     height: 200px;
     margin: 10px;
     object-fit: cover;
+}
+.courtesy{
+    font-size: 11px;
+}
+.text-cursive{
+    font-family: cursive;
+    font-weight: bold;
+    margin-top:70px ;
 }

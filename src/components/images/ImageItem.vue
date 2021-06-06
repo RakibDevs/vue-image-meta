@@ -1,6 +1,6 @@
 <template>
 	<div class="image-item" v-on:click="download">
-		<a :href="downloadUrl" > download</a>
+		<a :href="downloadUrl" class="download-icon"> &#8595;</a>
 		<img :src="image.image_src" />
 	</div>
 </template>

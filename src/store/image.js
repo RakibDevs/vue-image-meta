@@ -8,7 +8,7 @@ const state = () => ({
     paginatedImages : null,
     isLoading       : false,
     isUploading     : false,
-    createdImage     : null,
+    createdImage    : [],
 })
 
 const getters = {
@@ -52,14 +52,14 @@ const actions = {
         
         data.append('image', image);
         
-        commit('image_uploading', true);
+        commit('imageUploading', true);
         await axios.post(`${process.env.VUE_APP_API_ENDPOINT}images`, data)
             .then(res => {
-                commit('save_new_image', res.data.data);
-                commit('image_uploading', false);
+                commit('saveImage', res.data);
+                commit('imageUploading', false);
             }).catch(err => {
                 console.log('error', err);
-                commit('image_uploading', false);
+                commit('imageUploading', false);
             });
     },
 
@@ -69,14 +69,14 @@ const actions = {
         
         data.append('url', url);
         
-        commit('image_uploading', true);
+        commit('imageUploading', true);
         await axios.post(`${process.env.VUE_APP_API_ENDPOINT}images/url`, data)
             .then(res => {
-                commit('save_new_image', res.data.data);
-                commit('image_uploading', false);
+                commit('saveImage', res.data);
+                commit('imageUploading', false);
             }).catch(err => {
                 console.log('error', err);
-                commit('image_uploading', false);
+                commit('imageUploading', false);
             });
     },
     
@@ -84,8 +84,9 @@ const actions = {
 
 // mutations
 const mutations = {
-    save_new_image: (state, image) => {
+    saveImage: (state, image) => {
         state.createdImage = image;
+        console.log(image)
     },
 
     setImages: (state, images) => {
@@ -96,7 +97,7 @@ const mutations = {
         state.paginatedImages = paginatedImages;
     },
 
-    image_uploading(state, isLoading) {
+    imageUploading(state, isLoading) {
         state.isLoading = isLoading
     },
     
