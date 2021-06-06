@@ -1,7 +1,7 @@
 <template>
 	<div class="image-gallery">
 		<div class="row">
-			<div class="col-sm-4" v-for="image in images" :key="image.id">
+			<div class="col-sm-3" v-for="image in images" :key="image.id">
 				<image-item :image='image'/>
 			</div>
 		</div>
