@@ -7,17 +7,13 @@
         </div>
 
         <!-- To inform user how to upload image -->
-        <div v-show="Imgs.length == 0" class="beforeUpload">
+        <div class="upload-area">
+            <img height="50" src="/cloud.svg"/>
             <input type="file" style="z-index: 1" accept="image/*" ref="uploadInput"  @change="previewImgs"/>
       
             <p class="mainMessage">
                 {{ uploadMsg ? uploadMsg : "Click to upload or drop your images here" }}
             </p>
-        </div>
-        <div class="imgsPreview" v-show="Imgs.length > 0">
-            <div class="imageHolder" v-for="(img, i) in Imgs" :key="i">
-                <img :src="img" />
-            </div>
         </div>
     </div>
 </template>
@@ -38,7 +34,6 @@ export default {
         uploadMsg: String,
         maxError: String,
         fileError: String,
-        // emit storeImage method 
         method: { type: Function },
     },
     methods: {
@@ -54,6 +49,11 @@ export default {
                 
                 if (status == true) {
                     this.files = files[0];
+                    this.$emit("change", this.files);
+          
+                    this.Imgs = this.readAsDataURL(this.files);
+
+                    this.$emit('update', this.files)
                     this.previewImgs();
                 } else {
                   this.error = this.$props.fileError

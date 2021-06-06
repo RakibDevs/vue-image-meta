@@ -5,6 +5,7 @@ import axios from 'axios'
 const state = () => ({
     image           : null,
     images          : null,
+    paginatedImages : null,
     isLoading       : false,
     isUploading     : false,
     createdImage     : null,
@@ -13,6 +14,7 @@ const state = () => ({
 const getters = {
     image            : state => state.image,
     images           : state => state.images,
+    paginatedImages  : state => state.paginatedImages,
     createdImage     : state => state.createdImage,
     isLoading        : state => state.isLoading,
     isUploading      : state => state.isUploading,
@@ -23,11 +25,22 @@ const getters = {
 const actions = {
 
     // get images
-    async getImages({ commit }, page = null) {
+    async getImages({ commit }, query = null) {
+        let page    = (query !== null)?query.page:''
+            //search  = (query !== null)?query.search:''
         
         await axios.get(`${process.env.VUE_APP_API_ENDPOINT}images?page=`+page)
             .then(res => {
-                commit('get_images', res.data.data);
+                const images = res.data.data;
+                commit('setImages', images);
+                const pagination = {
+                    total: res.data.total,  
+                    per_page: res.data.per_page, 
+                    current_page: res.data.current_page, 
+                    total_pages: res.data.last_page 
+                }
+                res.data.pagination = pagination;
+                commit('setImagesPaginated', res.data);
             }).catch(err => {
                 console.log('error', err);
             });
@@ -52,7 +65,6 @@ const actions = {
 
     // store image
     async storeImageByUrl({ commit }, url) {
-        console.log(url)
         const data = new FormData();
         
         data.append('url', url);
@@ -73,13 +85,15 @@ const actions = {
 // mutations
 const mutations = {
     save_new_image: (state, image) => {
-        state.images.unshift(image)
         state.createdImage = image;
     },
 
-    get_images: (state, images) => {
-        console.log(images)
+    setImages: (state, images) => {
         state.images = images;
+    },
+
+    setImagesPaginated: (state, paginatedImages) => {
+        state.paginatedImages = paginatedImages;
     },
 
     image_uploading(state, isLoading) {

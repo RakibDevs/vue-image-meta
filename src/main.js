@@ -12,9 +12,7 @@ import './assets/css/style.css';
 
 
 const app = createApp(App);
-app.config.globalProperties.$http = Axios;/*
-app.config.globalProperties.$http.defaults.headers.common['Content-Type'] = 'application/json';
-app.config.globalProperties.$http.defaults.headers.common['Origin'] = '*';*/
+app.config.globalProperties.$http = Axios;
 
 
 app.config.devtools = true;

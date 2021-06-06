@@ -9,33 +9,42 @@
     border: 3px dashed #a3a8b1;
 }
 .error {
-  text-align: center;
-  color: red;
-  font-size: 15px;
+    text-align: center;
+    color: red;
+    font-size: 15px;
 }
-.beforeUpload {
-  position: relative;
-  text-align: center;
+.upload-area {
+    position: relative;
+    text-align: center;
+
+    border: 1px solid #d1d1d1;
+    border-radius: 10px;
+    height: 200px;
+    padding: 50px;
+    width: 60%;
+    margin: auto;
 }
-.beforeUpload input {
-  width: 100%;
-  margin: auto;
-  height: 100%;
-  opacity: 0;
-  position: absolute;
-  background: red;
-  display: block;
+.upload-area input {
+    width: 100%;
+    margin: auto;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    background: red;
+    display: block;
+    left: 0;
+    top: 0;
 }
-.beforeUpload input:hover {
-  cursor: pointer;
+.upload-area input:hover {
+    cursor: pointer;
 }
-.beforeUpload .icon {
-  width: 150px;
-  margin: auto;
-  display: block;
+.upload-area .icon {
+    width: 150px;
+    margin: auto;
+    display: block;
 }
 .image-item{
-  text-align: center;
+    text-align: center;
 }
 .image-item img {
     width: 200px;
