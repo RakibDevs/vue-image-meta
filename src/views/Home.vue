@@ -2,9 +2,8 @@
     <div class="home mt-4"> 
         <!-- file uploader --> 
         <div class="text-center ">
-            <h4 class="text-cursive font-weight-bold">Extract EXIF information from image?</h4>
+            <h4 class="text-cursive font-weight-bold">Extract <span class="text-theme">EXIF information</span> from image?</h4>
         </div>
-        <p class="p-3"></p>
         <file-uploader  @update="storeImage"/>   
         <div class="link-uploader text-center">
             <form ref="form" @submit.prevent="onSubmitUrl">
@@ -17,8 +16,8 @@
                 </div>
             </form>
         </div>
-        <div class="mt-3">
-            <exif-profile :image="createdImage"/>
+        <div v-if="createdImage" class="mt-3">
+            <exif-profile  :image="createdImage"/>
         </div>
         
     </div>
@@ -41,9 +40,7 @@ export default {
         }
     },
 
-    computed: { ...mapGetters(["isLoading","createdImage"])
-
-     },
+    computed: { ...mapGetters(["isLoading","createdImage"])},
 
 
     methods: {

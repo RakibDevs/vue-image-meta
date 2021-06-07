@@ -6,9 +6,9 @@ const state = () => ({
     image           : null,
     images          : null,
     paginatedImages : null,
+    createdImage    : null,
     isLoading       : false,
     isUploading     : false,
-    createdImage    : [],
 })
 
 const getters = {
@@ -79,6 +79,17 @@ const actions = {
                 commit('imageUploading', false);
             });
     },
+    // get images
+    async getSingleImage({ commit }, id) {
+        
+        await axios.get(`${process.env.VUE_APP_API_ENDPOINT}images/`+id)
+            .then(res => {
+                const image = res.data;
+                commit('setImage', image);
+            }).catch(err => {
+                console.log('error', err);
+            });
+    },
     
 }
 
@@ -86,11 +97,13 @@ const actions = {
 const mutations = {
     saveImage: (state, image) => {
         state.createdImage = image;
-        console.log(image)
     },
 
     setImages: (state, images) => {
         state.images = images;
+    },
+    setImage: (state, image) => {
+        state.image = image;
     },
 
     setImagesPaginated: (state, paginatedImages) => {
@@ -100,8 +113,6 @@ const mutations = {
     imageUploading(state, isLoading) {
         state.isLoading = isLoading
     },
-    
-
 }
 
 export default {

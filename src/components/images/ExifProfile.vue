@@ -23,8 +23,8 @@
 							<td>{{image.mime_type}}</td>
 						</tr>
 						<tr>
-							<td><b></b></td>
-							<td></td>
+							<td><b>Created</b></td>
+							<td>{{image.created_ago}}</td>
 						</tr>
 						<tr>
 							<td><b></b></td>
@@ -62,7 +62,7 @@
 		},
 		
 		created() {
-			console.log(this.image)
+			console.log('got from item')
 		}
 
 	}
