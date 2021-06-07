@@ -1,7 +1,7 @@
 <template>
-	<div class="image-item" v-on:click="preview">
+	<div class="image-item" >
 		<a :href="downloadUrl" class="download-icon"> &#8595;</a>
-		<img :src="image.image_src" />
+		<img :src="image.image_src" v-on:click="preview" />
 	</div>
 </template>
 

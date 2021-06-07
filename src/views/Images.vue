@@ -7,7 +7,8 @@
 			</div>
 		</div>
 		<!-- apply laravel pagination using @hennge/vue3-pagination paginator -->
-		<div v-if="paginatedImages !== null" class="vertical-center mt-2 mb-5">
+
+		<div v-if="paginatedImages !== null" class="justify-content-center mt-2 mb-5">
 			<v-pagination
 				v-model="query.page"
 				:pages="paginatedImages.pagination.total_pages"

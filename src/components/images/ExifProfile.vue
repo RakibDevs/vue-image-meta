@@ -9,58 +9,57 @@
 			</div>
 			<div class="col-sm-8">
 				<div class="panel-custom">
-					<table border="0">
-						<tr>
-							<td><b>Height</b></td>
-							<td>{{image.height}}</td>
-						</tr>
-						<tr>
-							<td><b>Width</b></td>
-							<td>{{image.width}}</td>
-						</tr>
-						<tr>
-							<td><b>Mime Type</b></td>
-							<td>{{image.mime_type}}</td>
-						</tr>
-						<tr>
-							<td><b>Created</b></td>
-							<td>{{image.created_ago}}</td>
-						</tr>
-						<tr>
-							<td><b></b></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td><b></b></td>
-							<td></td>
-						</tr>
-					</table>
+					<ul class="exif-meta-items">
+						<li><b>Height</b> {{image.height}}</li>
+						<li><b>Width</b> {{image.width}}</li>
+						<li><b>Mime Type</b> {{image.mime_type}}</li>
+						<li><b>Actual Source</b> <a v-if="image.actual_src" :href="image.actual_src">View</a></li>
+						<li><b>Created</b> {{image.created_ago}}</li>
+					</ul>
 				</div>
 			</div>
 		</div>
 		<!-- if exif information exist -->
-		<div class="row">
+		<div class="row" >
 			<div class="col-sm-6">
+				<div class="panel-custom">
+					<h4>Author & Copyright</h4>
+					<ul v-if="image.meta" class="exif-meta-items">
+						<li v-for="(item, key, index) in image.meta.author" v-bind:key="index"><b>{{key}} :</b> {{item}}</li>
+					</ul>
+					<p v-else class="text-danger">No information found</p>
+
+					<h4>Camera</h4>
+					<ul v-if="image.meta" class="exif-meta-items">
+						<li v-for="(item, key, index) in image.meta.camera" v-bind:key="index"><b>{{key}} :</b> {{item}}</li>
+					</ul>
+					<p v-else class="text-danger">No information found</p>
+				</div>
 				
 			</div>
-			<div class="col-sm-6"></div>
+			<div class="col-sm-6">
+				<div class="panel-custom">
+					<h4>EXIF</h4>
+					<ul v-if="image.meta" class="exif-meta-items">
+						<li v-for="(item, key, index) in image.meta.exif" v-bind:key="index"><b>{{key}} :</b> {{item}}</li>
+					</ul>
+					<p v-else class="text-danger">No information found</p>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script>
 
-	export default{
-
+	export default {
 
 		props:['image'],
 
 		computed: { 
 		},
-
 		methods: {
 		},
-		
 		created() {
 			console.log('got from item')
 		}

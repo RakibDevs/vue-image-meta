@@ -15,7 +15,6 @@ const getters = {
     image            : state => state.image,
     images           : state => state.images,
     paginatedImages  : state => state.paginatedImages,
-    createdImage     : state => state.createdImage,
     isLoading        : state => state.isLoading,
     isUploading      : state => state.isUploading,
 
@@ -55,8 +54,9 @@ const actions = {
         commit('imageUploading', true);
         await axios.post(`${process.env.VUE_APP_API_ENDPOINT}images`, data)
             .then(res => {
-                commit('saveImage', res.data);
-                commit('imageUploading', false);
+                commit('getUploadedImage', res.data)
+                commit('imageUploading', false)
+                return res.data
             }).catch(err => {
                 console.log('error', err);
                 commit('imageUploading', false);
@@ -70,10 +70,11 @@ const actions = {
         data.append('url', url);
         
         commit('imageUploading', true);
-        await axios.post(`${process.env.VUE_APP_API_ENDPOINT}images/url`, data)
+         await axios.post(`${process.env.VUE_APP_API_ENDPOINT}images/url`, data)
             .then(res => {
-                commit('saveImage', res.data);
-                commit('imageUploading', false);
+                commit('getUploadedImage', res.data)
+                commit('imageUploading', false)
+                return res.data
             }).catch(err => {
                 console.log('error', err);
                 commit('imageUploading', false);
@@ -95,7 +96,7 @@ const actions = {
 
 // mutations
 const mutations = {
-    saveImage: (state, image) => {
+    getUploadedImage: (state, image) => {
         state.createdImage = image;
     },
 
@@ -111,7 +112,7 @@ const mutations = {
     },
 
     imageUploading(state, isLoading) {
-        state.isLoading = isLoading
+        state.isUploading = isLoading
     },
 }
 

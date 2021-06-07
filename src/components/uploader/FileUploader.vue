@@ -48,7 +48,6 @@ export default {
                 
                 if (status == true) {
                     this.files = files[0];
-                    this.$emit("change", this.files);
                     this.$emit('update', this.files)
                 } else {
                   this.error = this.$props.fileError
@@ -66,7 +65,6 @@ export default {
             let files = e.target.files || e.dataTransfer.files;
             if (this.dropped == 0) this.files = files[0];
             this.error = "";
-            this.$emit("change", this.files);
             this.$emit('update', this.files)
         },
     }

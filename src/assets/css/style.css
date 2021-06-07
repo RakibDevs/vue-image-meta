@@ -2,9 +2,7 @@
   font-family: Hallywood;
   src: url("../fonts/Hallywood.woff");
 }
-* {
-    font-family: "sans-serif",monospace;
-}
+
 a {
     color: var(--bs-gray-dark);
     text-decoration: none;
@@ -105,8 +103,8 @@ nav.header{
     margin: auto;
 }
 .created-image-preview{
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
     object-fit: cover;
 }
 .panel-custom {
@@ -144,7 +142,7 @@ a.download-icon {
     left: 10%;
     top: 50px;
     background: #fff;
-    opacity: 0.96;
+    opacity: 0.98;
     box-shadow: 2px 2px 2px 2px #d1d1d1;
     border-radius: 5px;
     height: calc(95vh - 30px);
@@ -183,4 +181,17 @@ a.download-icon {
     cursor: pointer;
     color: #ff0000;
     font-weight: bold;
+}
+.exif-meta-items{
+    padding: 0;
+}
+.exif-meta-items li {
+    list-style: none;
+    font-size: 14px;
+    border-bottom: 1px solid #e1e1e1;
+    padding: 3px 0;
+}
+.exif-meta-items li b {
+    width: 180px;
+    display: inline-block;
 }

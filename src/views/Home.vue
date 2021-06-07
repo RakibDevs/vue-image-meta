@@ -1,10 +1,11 @@
 <template>
     <div class="home mt-4"> 
-        <!-- file uploader --> 
         <div class="text-center ">
             <h4 class="text-cursive font-weight-bold">Extract <span class="text-theme">EXIF information</span> from image?</h4>
         </div>
-        <file-uploader  @update="storeImage"/>   
+        <!-- attach file uploader & listen storeImage  -->
+        <file-uploader @update="dragOrInsertImage"/>
+        <!-- upload anf fetch exif via image -->   
         <div class="link-uploader text-center">
             <form ref="form" @submit.prevent="onSubmitUrl">
                 <div class="row justify-content-center">
@@ -16,45 +17,54 @@
                 </div>
             </form>
         </div>
-        <div v-if="createdImage" class="mt-3">
-            <exif-profile  :image="createdImage"/>
+        <div class="mt-3">
+            <div v-if="isUploading">
+                loading.......
+            </div>
+            <div v-if="image">   
+                <!-- show image with exif in preview after uploading -->
+                <exif-profile   :image="image" />
+            </div>
         </div>
-        
     </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex"
+import axios from 'axios'
 import FileUploader from '../components/uploader/FileUploader.vue'
 import ExifProfile from '../components/images/ExifProfile.vue'
-
-
 
 export default {
     components: { FileUploader, ExifProfile},
     name: "Home",
     data(){
         return{
-            imageSrc: '',
-            selectedFile : []
+            imageSrc: null,
+            image: null,
+            isUploading:false
         }
     },
-
-    computed: { ...mapGetters(["isLoading","createdImage"])},
-
-
     methods: {
-        ...mapActions(["storeImage","storeImageByUrl"]),
         onSubmitUrl(){
-            this.storeImageByUrl(this.imageSrc);
-
+            this.storeImage(this.imageSrc,'url') 
+        },
+        dragOrInsertImage(file){
+            this.storeImage(file,'image') 
+        },
+        storeImage(file, type){
+            this.isUploading = true;
+            const data = new FormData();
+            data.append('type', type);
+            data.append(type, file);
+            axios.post(`${process.env.VUE_APP_API_ENDPOINT}images`, data)
+                .then(res => {
+                    this.image = res.data
+                    this.isUploading = false;
+                }).catch(err => {
+                    console.log('error', err);
+                    this.isUploading = false;
+                });
         }
-    },
-    mounted(){
-        console.log(this.createdImage)
-    },
-    
-    created() {
     }
 };
 </script>
