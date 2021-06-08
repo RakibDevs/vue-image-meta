@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <layout />
+    <notifications position="top right" />
   </div>
 </template>
 

@@ -65,16 +65,31 @@ export default {
             this.storeImage(file,'image') 
         },
         storeImage(file, type){
+            this.image = null;
             this.isUploading = true;
             const data = new FormData();
             data.append('type', type);
             data.append(type, file);
             axios.post(`${process.env.VUE_APP_API_ENDPOINT}images`, data)
                 .then(res => {
-                    this.image = res.data
-                    this.isUploading = false;
+                    if(typeof res.data.errors !== 'undefined'){
+                        this.$notify({
+                            title: res.data.message,
+                            type: 'error'
+                        });
+                    }else{
+                        this.image = res.data
+                    }
+                        this.isUploading = false;
                 }).catch(err => {
-                    console.log('error', err);
+                    var msg = 'Error! Failed to process!'
+                    if(typeof err.response.data.errors !== 'undefined'){
+                        msg = err.response.data.message;
+                    }
+                    this.$notify({
+                        title: msg,
+                        type: 'error'
+                    });
                     this.isUploading = false;
                 });
         },

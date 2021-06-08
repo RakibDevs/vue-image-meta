@@ -10,6 +10,7 @@
   "dependencies": {
     "@fortawesome/vue-fontawesome": "^3.0.0-4",
     "@hennge/vue3-pagination": "^1.0.17",
+    "@kyvg/vue3-notification": "^2.3.2",
     "axios": "^0.21.1",
     "bootstrap": "^5.0.1",
     "bootstrap-vue": "^2.21.2",
@@ -17,6 +18,7 @@
     "nprogress": "^0.2.0",
     "vue": "^3.0.11",
     "vue-router": "^4.0.8",
+    "vue-toastification": "^2.0.0-rc.1",
     "vue3-dropzone": "^0.0.7",
     "vuex": "^4.0.1",
     "vuex-persistedstate": "*"

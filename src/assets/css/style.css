@@ -225,7 +225,7 @@ a.download-icon {
     margin-top: 100px;
 }
 .loader{
-    margin-top:100px ;
+    margin-top:50px ;
 }
 .exif-profile-header, .exif-profile-header span{
     letter-spacing: 5px;
@@ -244,6 +244,7 @@ a.download-icon {
 .image-info{
     font-size: 12px;
     padding: 0 10px;
+    width: 100%;
 }
 .image-properties{
     padding: 30px;
@@ -251,8 +252,12 @@ a.download-icon {
 .Pagination {
     justify-content: center;
 }
-.error {
+.link-uploader .error {
+    margin-top: 5px;
     text-align: left;
     color: red;
     font-size: 11px;
+}
+.vue-notification-template.error{
+    color: #fff !important;
 }

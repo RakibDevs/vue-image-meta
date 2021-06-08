@@ -1,6 +1,6 @@
 <template>
 	<div class="image-item" >
-		<img :src="image.image_src" v-on:click="preview" />
+		<img :src="image.image_src" v-on:click="preview" title="click to preview"/>
 		<p class="d-flex justify-content-between image-info">
 			<span>{{image.created_ago}}</span> 
 			<a :href="downloadUrl" >Download</a>
