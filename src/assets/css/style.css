@@ -261,3 +261,31 @@ a.download-icon {
 .vue-notification-template.error{
     color: #fff !important;
 }
+
+/*
+ * Mobile css
+ */
+
+@media only screen and (max-width: 768px) {
+    *{
+        font-size: 13px;
+    }
+    .created-image-preview {
+        width: 100%;
+    }
+    .text-cursive {
+        font-weight: bold;
+        margin-top: 10px;
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    .arrow{
+        display: none;
+    }
+    .upload-area, .link-uploader{
+        width: 100%;
+    }
+    .footer-container {
+        margin-top: 10px;
+    }
+}
