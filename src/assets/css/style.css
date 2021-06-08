@@ -42,14 +42,15 @@ nav.header{
 }
 .upload-area {
     position: relative;
+    margin-top: 50px;
     text-align: center;
     border: 1px solid #e9e9e9;
     border-radius: 10px;
-    height: 120px;
+    height: 130px;
     font-size: 13px;
     padding: 19px;
-    width: 550px;
-    margin: auto;
+    width: 80%;
+    margin-left: auto;
     background: #eff3f6;
     color: #5f7d95;
 }
@@ -75,8 +76,11 @@ nav.header{
 .file-upload-container{
     color: #5f7d95;
 }
+.link-uploader{
+    margin-left: auto;
+    width: 80%;
+}
 .link-extractor{
-    width: 575px;
     margin: auto;
     position: relative;
 }
@@ -154,9 +158,9 @@ a.download-icon {
 }
 .text-cursive {
     font-weight: bold;
-    margin-top: 70px;
-    font-size: 24px;
-    margin-bottom:30px ;
+    margin-top: 60px;
+    font-size: 48px;
+    margin-bottom: 30px;
 }
 .text-theme{
     font-family: sans-serif;
@@ -194,4 +198,7 @@ a.download-icon {
 .exif-meta-items li b {
     width: 180px;
     display: inline-block;
+}
+.footer-container{
+    margin-top: 100px;
 }

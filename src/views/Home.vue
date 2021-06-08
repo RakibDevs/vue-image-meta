@@ -1,21 +1,30 @@
 <template>
-    <div class="home mt-4"> 
-        <div class="text-center ">
-            <h4 class="text-cursive font-weight-bold">Extract <span class="text-theme">EXIF information</span> from image?</h4>
-        </div>
-        <!-- attach file uploader & listen storeImage  -->
-        <file-uploader @update="dragOrInsertImage"/>
-        <!-- upload anf fetch exif via image -->   
-        <div class="link-uploader text-center">
-            <form ref="form" @submit.prevent="onSubmitUrl">
-                <div class="row justify-content-center">
-                    <div class="m-2 text-muted">or</div>
-                    <div class="link-extractor">
-                        <input type="url"  v-model="imageSrc" class="form-control" placeholder="Enter a valid url" /> 
-                        <button class="btn btn-extractor">Extract </button>
-                    </div>
+    <div class="home mt-4">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4 class="text-cursive font-weight-bold">Extract <span class="text-theme">EXIF</span><br> from Image or link?</h4>
+                <p class="text-muted" style="width: 72%"><span class="text-danger">EXIF data</span>, sometimes called metadata, is a collection of information that is stored by the camera at the moment you take a photo. </p>
+            </div>
+            <div class="col-sm-6">
+                
+                <!-- attach file uploader & listen storeImage  -->
+                <file-uploader @update="dragOrInsertImage"/>
+                <!-- upload anf fetch exif via image -->   
+                <div class="link-uploader text-center">
+                    <form ref="form" @submit.prevent="onSubmitUrl">
+                        <div class="row justify-content-center">
+                            <div class="m-2 text-muted">or</div>
+                            <div class="link-extractor">
+                                <input type="url"  v-model="imageSrc" class="form-control" placeholder="Enter a valid url" /> 
+                                <button class="btn btn-extractor">Extract </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </div>
+        </div> 
+        <div class="text-center ">
+            
         </div>
         <div class="mt-3">
             <div v-if="isUploading">
