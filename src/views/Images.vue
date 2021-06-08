@@ -1,7 +1,11 @@
 <template>
+	<div class="exif-images mt-4">
+		<h4>Explore EXIF profile...</h4>
+		<p class="mt-2">Get the latest EXIF record from our enriched stock</p>
+	</div>
 	<div :v-if="images" class="image-gallery">
 		<div class="row">
-			<div class="col-sm-3" v-for="image in images" :key="image.id">
+			<div class="col-sm-4" v-for="image in images" :key="image.id">
 				<!-- Fetch each image -->
 				<image-item :image='image' @update="modalImage"/>
 			</div>

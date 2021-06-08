@@ -1,7 +1,10 @@
 <template>
 	<div class="image-item" >
-		<a :href="downloadUrl" class="download-icon"> &#8595;</a>
 		<img :src="image.image_src" v-on:click="preview" />
+		<p class="d-flex justify-content-between image-info">
+			<span>{{image.created_ago}}</span> 
+			<a :href="downloadUrl" >Download</a>
+		</p>
 	</div>
 </template>
 
