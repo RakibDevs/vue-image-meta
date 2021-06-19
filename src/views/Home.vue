@@ -16,10 +16,10 @@
                             <div class="m-2 text-muted">or</div>
                             <div class="link-extractor">
                                 <input type="url"  v-model="imageSrc" class="form-control" placeholder="Enter a valid url" @input="change($event)" @change="change($event)" /> 
-                                <button v-if="isValid" class="btn btn-extractor" >Extract </button>
-                                <button v-if="!isValid" class="btn btn-extractor" disabled>Extract </button>
+                                <button v-if="isValid && urlExist" class="btn btn-extractor" >Extract </button>
+                                <button v-if="!isValid || !urlExist" class="btn btn-extractor" disabled>Extract </button>
                             </div>
-                            <div class="error" v-if="!isValid">Provided URL is Invalid! please insert a valid URL.</div>
+                            <div class="error" v-if="!isValid">{{errMsg}}</div>
                         </div>
                     </form>
                 </div>
@@ -54,7 +54,9 @@ export default {
             imageSrc: null,
             image: null,
             isUploading:false,
-            isValid:true
+            isValid:true,
+            urlExist:false,
+            errMsg:''
         }
     },
     methods: {
@@ -95,8 +97,25 @@ export default {
         },
         change(e){
             const regex = RegExp('(https?:\\/\\/)?((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|((\\d{1,3}\\.){3}\\d{1,3}))(\\:\\d+)?(\\/[-a-z\\d%_.~+@]*)*(\\?[;&a-z\\d%_.~+=-@]*)?(\\#[-a-z\\d_@]*)?$', 'i');
+            const imgcheck = /jpg|jpeg|png|PNG|JPEG|JPG/;
             const url = e.target.value
-            this.isValid = url.match(regex);
+            if(url){
+                this.urlExist = true
+                this.isValid = false;
+                if(url.match(regex)){
+                    if(imgcheck.test(url)){
+                        this.isValid = true;
+                    }else{
+                        this.errMsg = 'URL must contain a valid image path'
+                    }
+                }else{
+                    this.errMsg = 'Provided URL is Invalid! please insert a valid URL.'
+                }
+                
+            }else{
+                this.isValid = true
+                this.urlExist = false
+            }
         }
     }
 };
